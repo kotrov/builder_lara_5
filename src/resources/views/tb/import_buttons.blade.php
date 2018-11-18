@@ -6,10 +6,10 @@
 
         <button class="btn dropdown-toggle btn-xs btn-default" data-toggle="dropdown">
             <i class="fa fa-download"></i>
-            {{ $def['caption'] or 'Import' }}
+            {{ isset($def['caption']) ?: 'Import' }}
         </button>
 
-        <ul class="dropdown-menu pull-right" style="min-width: {{ $def['width'] or '260' }}px; padding-bottom: 0;">
+        <ul class="dropdown-menu pull-right" style="min-width: {{ isset($def['width']) && $def['width'] ?: '260' }}px; padding-bottom: 0;">
 
             <form id="tb-import-form" class="smart-form">
                 <fieldset style="padding: 12px 12px 0;">
@@ -23,7 +23,7 @@
                                     @endif
                                     <div class="input input-file">
                                 <span class="button" style="top: 3px; right: 3px;">
-                                    <input type="file" name="file" onclick="this.value = null;" onchange="TableBuilder.doImport(this, '{{ $type }}', '{{$info['url_load'] or ''}}');">
+                                    <input type="file" name="file" onclick="this.value = null;" onchange="TableBuilder.doImport(this, '{{ $type }}', '{{isset($info['url_load']) ?: ''}}');">
                                     Выбрать
                                 </span>
                                         <input type="text" placeholder="{{ $info['caption'] }}" readonly="readonly">
