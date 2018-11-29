@@ -245,6 +245,7 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'LaravelLocalization'   => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
+        'Jarboe' => Vis\Builder\Facades\Jarboe::class,
     ],
 
 ];

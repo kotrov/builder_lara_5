@@ -24,6 +24,7 @@
 jQuery(document).ready(function() {
     jQuery("#{{ $prefix . $name }}").datetimepicker({
         changeMonth: true,
+        changeYear: true,
         numberOfMonths: {{ $months ? : '1' }},
         prevText: '<i class="fa fa-chevron-left"></i>',
         nextText: '<i class="fa fa-chevron-right"></i>',

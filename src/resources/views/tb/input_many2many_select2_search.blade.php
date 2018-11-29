@@ -14,19 +14,19 @@
     jQuery(document).ready(function() {
 
          $select2{{$name}}{{$postfix}} = jQuery('#{{$name}}{{$postfix}}').select2({
-            placeholder: "{{ $search['placeholder'] or 'Поиск' }}",
-            minimumInputLength: {{ $search['minimum_length'] or '3' }},
+            placeholder: "{{ $search['placeholder'] ?? 'Поиск' }}",
+            minimumInputLength: {{ $search['minimum_length'] ?? '3' }},
             multiple: true,
             language: "ru",
             ajax: {
                 url: jQuery('#{{$name}}{{$postfix}}').parents('form').attr('action'),
                 dataType: 'json',
                 type: 'POST',
-                quietMillis: {{ $search['quiet_millis'] or '350' }},
+                quietMillis: {{ $search['quiet_millis'] ?? '350' }},
                 data: function (term, page) { // page is the one-based page number tracked by Select2
                     return {
                         q: term, //search term
-                        limit: {{ $search['per_page'] or '20' }}, // page size
+                        limit: {{ $search['per_page'] ?? '20' }}, // page size
                         page: page, // page number
                         @if (isset($row['id']))
                             page_id : {{$row['id']}},

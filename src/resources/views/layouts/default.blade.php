@@ -12,12 +12,9 @@
         <link rel="shortcut icon" href="{{ config('builder.admin.favicon_url') }}" type="image/x-icon">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="/packages/vis/builder/css/all.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
-        <link type="text/css" rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/ui-lightness/jquery-ui.css" />
 
         <script src="/packages/vis/builder/js/all_header1.js"></script>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
 
         @yield('styles')
         @yield('scripts_header')
@@ -36,8 +33,8 @@
             @endforeach
         @endif
 
-        <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript" src="/packages/vis/builder/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/packages/vis/builder/js/dataTables.bootstrap4.min.js"></script>
 
     </head>
     <body class="{{ Cookie::get('tb-misc-body_class', '') }} {{ $skin }}">

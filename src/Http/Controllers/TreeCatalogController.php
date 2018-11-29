@@ -87,6 +87,9 @@ class TreeCatalogController
             case 'get_edit_modal_form':
                 return $this->getEditModalForm();
 
+            case 'fast_save':
+                return $this->doFastSave();
+
             default:
                 return $this->handleShowCatalog();
         }
@@ -118,7 +121,7 @@ class TreeCatalogController
         $node->title = request('title');
         $node->template = request('template') ?: '';
         $node->slug = request('slug') ?: request('title');
-        $node->is_active = 1;
+        // $node->is_active = 1;
         $node->save();
 
         $node->checkUnicUrl();
@@ -391,7 +394,7 @@ class TreeCatalogController
             $template = $templates[$current->template];
         }
 
-        $jarboeController = new JarboeController([
+        $controller = new JarboeController([
             'url'        => URL::current(),
             'def_name'   => $this->nameTree.'.'.$template['node_definition'],
             'additional' => [
@@ -400,7 +403,7 @@ class TreeCatalogController
             ],
         ]);
 
-        $result = $jarboeController->query->updateRow(Input::all());
+        $result = $controller->query->updateRow(Input::all());
 
         $item = $this->model::find($idNode);
         $item->clearCache();
@@ -408,6 +411,22 @@ class TreeCatalogController
         $treeName = $this->nameTree;
         $result['html'] = view('admin::tree.content_row',
             compact('item', 'treeName', 'controller'))->render();
+
+        return Response::json($result);
+    }
+
+    public function doFastSave()
+    {
+        $field = request('name');
+
+        $fieldArray = request($field) ?? [];
+
+        $data['value'] = json_encode(array_values($fieldArray));
+        $data['name'] = $field;
+        $data['id'] = request('id');
+
+        $result = $this->controller->query->fastSave($data);
+        $result['status'] = 'ok';
 
         return Response::json($result);
     }

@@ -168,4 +168,15 @@ class SetField extends AbstractField
 
         return implode(', ', $prepared);
     }
+
+    public function getListValueFastEdit($row, $ident)
+    {
+        $options = $this->getAttribute('options');
+        $selected = $this->getAttribute('json_use') ?
+            json_decode($this->getValue($row)) :
+            explode(',', $this->getValue($row));
+        $isJson = $this->getAttribute('json_use');
+
+        return view('admin::tb.fast_edit_set', compact('row', 'ident', 'options', 'selected', 'isJson'));
+    }
 }

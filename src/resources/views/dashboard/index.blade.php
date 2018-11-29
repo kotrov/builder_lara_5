@@ -20,9 +20,9 @@
                <div id="wid-id-{{$loop->index}}" class="jarviswidget  jarviswidget-color-blueDark jarviswidget-sortable" data-widget-fullscreenbutton="false" data-widget-editbutton="false" style="" role="widget">
                    <header>
                        @if (isset($block['icon']))
-                            <span class="widget-icon"> <i class="fa fa-{{$block['icon'] or ""}} txt-color-white"></i> </span>
+                            <span class="widget-icon"> <i class="fa fa-{{$block['icon'] ?? ""}} txt-color-white"></i> </span>
                        @endif
-                       <h2> {{$block['title'] or ""}} </h2>
+                       <h2> {{$block['title'] ?? ""}} </h2>
 
                    </header>
                    <div role="content">

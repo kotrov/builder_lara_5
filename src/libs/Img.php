@@ -63,9 +63,9 @@ class Img
 
     protected function setOptions($options)
     {
-        $this->quality = isset($options['quality']) ? $options['quality'] : $this->quality;
-        $this->height = isset($options['h']) ? $options['h'] : $this->height;
-        $this->width = isset($options['w']) ? $options['w'] : $this->width;
+        $this->quality = $options['quality'] ?? $this->quality;
+        $this->height = $options['h'] ?? $this->height;
+        $this->width = $options['w'] ?? $this->width;
 
         if ($this->height === null) {
             $this->size = $this->width.'x0';

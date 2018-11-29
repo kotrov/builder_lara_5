@@ -9,7 +9,7 @@
         {{ __cms($def['caption']) }}
     </button>
     
-    <ul class="dropdown-menu pull-right" style="min-width: {{ $def['width'] or '260' }}px; padding-bottom: 0;">
+    <ul class="dropdown-menu pull-right" style="min-width: {{ $def['width'] ?? '260' }}px; padding-bottom: 0;">
         
         <form id="tb-export-form" class="smart-form">
             <fieldset style="padding: 12px 12px 0;">

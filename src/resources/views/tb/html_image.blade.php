@@ -1,6 +1,6 @@
 <li >
     <img class="image-attr-editable"
-         data-tbnum="{{$key or ""}}"
+         data-tbnum="{{$key ?? ""}}"
          @if (strpos($value, '.svg'))
             width = '120'
             height='120'

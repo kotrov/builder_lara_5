@@ -90,13 +90,6 @@ return [
                     },
                 ],
                 [
-                    'title' => 'Логирование',
-                    'link'  => '/events',
-                    'check' => function () {
-                        return true;
-                    },
-                ],
-                [
                     'title' => 'Контроль изменений',
                     'link'  => '/revisions',
                     'check' => function () {

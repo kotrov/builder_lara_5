@@ -18,7 +18,7 @@
                 <div class="btn-group">
                     @foreach ($def['multi_actions'] as $type => $action)
                     @if (!isset($action['options']))
-                    <button type="button" class="btn btn-default btn-sm {{ $action['class'] or '' }}"
+                    <button type="button" class="btn btn-default btn-sm {{ $action['class'] ?? '' }}"
                             onclick="TableBuilder.doMultiActionCall('{{$type}}');">
                         {{ $action['caption'] }}
                     </button>
@@ -29,7 +29,7 @@
                 @foreach ($def['multi_actions'] as $type => $action)
                 @if (isset($action['options']))
                     <div class="btn-group dropup">
-                        <button class="btn btn-default btn-sm dropdown-toggle {{ $action['class'] or '' }}" data-toggle="dropdown">
+                        <button class="btn btn-default btn-sm dropdown-toggle {{ $action['class'] ?? '' }}" data-toggle="dropdown">
                             {{ $action['caption'] }} <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">

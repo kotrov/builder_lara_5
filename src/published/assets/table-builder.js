@@ -140,7 +140,7 @@ var TableBuilder = {
             return content.parents('form').attr('action');
         }
 
-        return TableBuilder.action_url ? TableBuilder.action_url : '/admin/handle/tree';
+        return TableBuilder.action_url ? TableBuilder.action_url : '/admin/tree';
     }, // end getActionUrl
 
     initSearchOnEnterPressed: function () {
@@ -944,7 +944,7 @@ var TableBuilder = {
                 },
                 data: data,
                 type: "POST",
-                url: TableBuilder.getActionUrl(),
+                url: TableBuilder.getActionUrl($(context)),
                 cache: false,
                 contentType: false,
                 processData: false,
@@ -1938,6 +1938,44 @@ var TableBuilder = {
         });
 
         $input.val(values.join(','));
+    },
+
+
+    sendInlineEditForm: function(context, field, idRow)
+    {
+        var data = $(context).closest('.tb-inline-edit-container').find("select, textarea, input").serializeArray();
+        data.push({ name: 'id', value: idRow });
+        data.push({ name: 'name', value: field });
+        data.push({ name: 'query_type', value: 'fast_save' });
+
+        var url = TableBuilder.getActionUrl($(context)) == undefined ? '/admin/tree' : TableBuilder.getActionUrl($(context));
+
+        jQuery.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            dataType: 'json',
+            success: function(response) {
+                if (response.status) {
+                    TableBuilder.showSuccessNotification('Сохранено успешно');
+                } else {
+                    TableBuilder.showErrorNotification('Что-то пошло не так');
+                }
+            }
+        });
+    }, // end sendInlineEditForm
+
+
+    editFastSetField : function (content) {
+
+        var value = content.attr('data-is-json') ? JSON.stringify(content.val()) : content.val();
+
+        $.post( TableBuilder.getActionUrl(content), {
+            name: content.attr('data-name'),
+            id: content.attr('data-id'),
+            value: value,
+            query_type : 'fast_save'
+        } );
     }
 };
 

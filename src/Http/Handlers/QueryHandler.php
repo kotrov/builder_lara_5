@@ -572,7 +572,13 @@ class QueryHandler
         $this->clearCache();
 
         $nameField = $input['name'];
-        $valueField = $input['value'];
+
+        if (isset($input['value'])) {
+            $valueField = $input['value'];
+        } else {
+            $fieldArray = request($nameField) ?? [];
+            $valueField = json_encode(array_values($fieldArray));
+        }
 
         $modelObj = $this->model::find($input['id']);
         $modelObj->$nameField = $valueField;

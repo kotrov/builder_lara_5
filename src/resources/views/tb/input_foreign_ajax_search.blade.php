@@ -6,21 +6,21 @@
 <script>
 
     var $select2{{$name}} = $('.{{$name}}_foreign').select2({
-        placeholder: "{{ $search['placeholder'] or 'Поиск' }}",
-        minimumInputLength: {{ $search['minimum_length'] or '3' }},
+        placeholder: "{{ $search['placeholder'] ?? 'Поиск' }}",
+        minimumInputLength: {{ $search['minimum_length'] ?? '3' }},
         language: "ru",
         ajax: {
             url: $('.{{$name}}_foreign').parents('form').attr('action'),
             dataType: 'json',
             type: 'POST',
-            quietMillis: {{ $search['quiet_millis'] or '350' }},
+            quietMillis: {{ $search['quiet_millis'] ?? '350' }},
             data: function (term, page) {
                 return {
                     q: term,
-                    limit: {{ $search['per_page'] or '20' }},
+                    limit: {{ $search['per_page'] ?? '20' }},
                     page: page,
                     ident: '{!! $name !!}',
-                    template: '{{ $search['template'] or '%[q]%' }}',
+                    template: '{{ $search['template'] ?? '%[q]%' }}',
                     query_type: 'foreign_ajax_search',
                 };
             },

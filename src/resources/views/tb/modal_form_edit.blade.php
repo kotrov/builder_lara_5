@@ -12,7 +12,7 @@
                      <span class="glyphicon glyphicon-floppy-disk"></span>
                     {{__cms('Сохранить')}}
                 </button>
-                <h4 class="modal-title" id="modal_form_edit_label">{{$def['options']['caption']}} : {{__cms('Редактирование')}}</h4>
+                <h4 class="modal-title" id="modal_form_edit_label">{{$def['options']['caption'] ? :  'Структура сайта'}} : {{__cms('Редактирование')}}</h4>
             </div>
             
             @include('admin::tb.form_edit')

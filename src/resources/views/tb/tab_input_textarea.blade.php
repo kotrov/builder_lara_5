@@ -23,7 +23,7 @@
                 @endif
                     <div style="position: relative;">
                         <label class="textarea">
-                        <textarea rows="{{$rows or '3'}}"
+                        <textarea rows="{{$rows ?? '3'}}"
                                   class="custom-scroll"
                                   name="{{ $name . $tab['postfix']}}">{{ $tab['value'] }}</textarea>
                         </label>

@@ -3,7 +3,7 @@
        <table>
         <tr>
             <td>
-                {{$def['actions']['filter']['caption'] or ""}}
+                {{$def['actions']['filter']['caption'] ?? ""}}
             </td>
             @if(isset($def['actions']['filter']['fields']) && count($def['actions']['filter']['fields']))
                 @foreach($def['actions']['filter']['fields'] as $field)

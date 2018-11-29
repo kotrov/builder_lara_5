@@ -1,4 +1,4 @@
-<label class="textarea"><textarea rows="{{$rows or '3'}}"
+<label class="textarea"><textarea rows="{{$rows ?? '3'}}"
           class="custom-scroll"
           id="{{$name}}"
 

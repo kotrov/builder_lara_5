@@ -10,9 +10,11 @@
         @foreach(config('builder.' . $treeName . '.list_fields') as $nameBDField => $field)
             <td style="text-align: center">
                  @if (isset($item->$nameBDField))
-                        <?php $fieldClass =  $controller->getField($nameBDField);?>
+                        <?php $fieldClass =  $controller->getField($nameBDField); ?>
 
-                        {!! $fieldClass->getListValue($item->toArray()) !!}
+                        {!! $fieldClass->getAttribute('fast-edit') ?
+                                $fieldClass->getListValueFastEdit($item->toArray(), $nameBDField) :
+                                $fieldClass->getListValue($item->toArray()) !!}
                  @endif
             </td>
         @endforeach
@@ -33,13 +35,19 @@
         </td>
         <td style="white-space: nowrap;">{{ $item->slug }}</td>
         <td style="position: relative;">
-            <span class="onoffswitch">
-                <input onchange="Tree.activeToggle('{{$item->id}}', this.checked);" type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" @if ($item->is_active) checked="checked" @endif id="myonoffswitch{{$item->id}}">
-                <label class="onoffswitch-label" for="myonoffswitch{{$item->id}}">
-                    <span class="onoffswitch-inner" data-swchon-text="{{__cms('ДА')}}" data-swchoff-text="{{__cms("НЕТ")}}"></span>
-                    <span class="onoffswitch-switch"></span>
-                </label>
-            </span>
+
+            @if (isset($controller->getFields()['is_active']) && $controller->getField('is_active')->getAttribute('type') == 'set')
+                {!! $controller->getField('is_active')->getListValueFastEdit($item, 'is_active') !!}
+            @else
+                <span class="onoffswitch">
+                    <input onchange="Tree.activeToggle('{{$item->id}}', this.checked);" type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" @if ($item->is_active) checked="checked" @endif id="myonoffswitch{{$item->id}}">
+                    <label class="onoffswitch-label" for="myonoffswitch{{$item->id}}">
+                        <span class="onoffswitch-inner" data-swchon-text="{{__cms('ДА')}}" data-swchoff-text="{{__cms("НЕТ")}}"></span>
+                        <span class="onoffswitch-switch"></span>
+                    </label>
+                </span>
+            @endif
+
         </td>
     @endif
 

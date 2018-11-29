@@ -15,7 +15,7 @@
                 <label class="label">Фраза</label>
                 <div style="position: relative;">
                   <label class="input">
-                  <input type="text" value="{{{ $info->phrase or "" }}}" onkeyup="Trans.getTranslate(this.value)" name="phrase"  class="dblclick-edit-input form-control input-sm unselectable">
+                  <input type="text" value="{{{ $info->phrase ?? "" }}}" onkeyup="Trans.getTranslate(this.value)" name="phrase"  class="dblclick-edit-input form-control input-sm unselectable">
                   </label>
                 </div>
               </section>
@@ -43,7 +43,7 @@
           <button type="button" class="btn btn-default" data-dismiss="modal"> {{__cms('Отмена')}} </button>
         </div>
 
-        <input type="hidden" name="id" value="{{$info->id or "0"}}">
+        <input type="hidden" name="id" value="{{$info->id ?? "0"}}">
     </form>
 </div>
 

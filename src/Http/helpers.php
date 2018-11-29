@@ -70,13 +70,17 @@ if (! function_exists('glide')) {
      */
     function glide($source, $options = [])
     {
-        if (env('APP_ENV') == 'local') {
-            return '//via.placeholder.com/'.$options['w'].'x'.@$options['h'] ?: $options['w'];
+        if (
+            env('IMG_PLACEHOLDER', true)
+            && (env('APP_ENV') === 'local' || env('APP_ENV') === 'testing')
+        ) {
+            $width = $options['w'] ?? 100;
+            $height = $options['h'] ?? 100;
+
+            return "//via.placeholder.com/{$width}x{$height}";
         }
 
-        $img = new Vis\Builder\Img();
-
-        return $img->get($source, $options);
+        return (new Vis\Builder\Img())->get($source, $options);
     }
 }
 

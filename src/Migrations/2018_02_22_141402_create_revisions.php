@@ -19,10 +19,10 @@ class CreateRevisions extends Migration
             $table->increments('id');
             $table->string('revisionable_type', 100);
             $table->integer('revisionable_id');
-            $table->integer('user_id');
-            $table->string('key');
+            $table->integer('user_id')->nullable();
+            $table->string('key')->nullable();
             $table->text('old_value')->nullable();
-            $table->text('new_value');
+            $table->text('new_value')->nullable();
 
             $table->timestamps();
 

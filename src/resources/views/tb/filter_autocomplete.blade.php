@@ -32,7 +32,7 @@
                         limit: 20,
                         ident: '{!! $name !!}',
                         query_type: 'foreign_ajax_search',
-                        template: '{{ $search['template'] or '%[q]%' }}',
+                        template: '{{ $search['template'] ?? '%[q]%' }}',
                     };
                 },
                 results: function (data, page) {

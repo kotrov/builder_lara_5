@@ -14,7 +14,7 @@
 <script>
     $("#f-{{$name}}").datepicker({
         changeMonth: true,
-        numberOfMonths: {{ $months or '1' }},
+        numberOfMonths: {{ $months ?? '1' }},
         prevText: '<i class="fa fa-chevron-left"></i>',
         nextText: '<i class="fa fa-chevron-right"></i>',
         dateFormat: "yy-mm-dd",

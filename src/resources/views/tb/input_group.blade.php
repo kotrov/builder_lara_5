@@ -7,7 +7,7 @@
                 <a class="delete_group" onclick="TableBuilder.deleteGroup(this)" style="float: right; cursor: pointer; position: absolute; right: 0; z-index: 10"><i class="fa red fa-times"></i> Удалить</a>
                 @endif
                 @foreach($filds as $titleField => $fild)
-                    <section class="{{$fild['class_name'] or ''}}" @if(isset($fild['tabs'])) style="margin-top:20px" @endif>
+                    <section class="{{$fild['class_name'] ?? ''}}" @if(isset($fild['tabs'])) style="margin-top:20px" @endif>
 
                         @if (!isset($fild['tabs']))
                             @if (!isset($fild['no_show_caption']) || !$fild['no_show_caption'])

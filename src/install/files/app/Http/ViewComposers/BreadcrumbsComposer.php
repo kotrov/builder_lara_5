@@ -6,10 +6,6 @@ use Illuminate\View\View;
 
 class BreadcrumbsComposer
 {
-    public function __construct()
-    {
-    }
-
     public function compose(View $view)
     {
         if (! isset($view->getData()['page'])) {
